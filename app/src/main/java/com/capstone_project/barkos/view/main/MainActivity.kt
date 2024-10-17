@@ -1,27 +1,31 @@
-package com.capstone_project.barkos.main
+package com.capstone_project.barkos.view.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.capstone_project.barkos.R
-import com.capstone_project.barkos.login.LoginActivity
+import com.capstone_project.barkos.view.Home.HomeFragment
+import com.capstone_project.barkos.view.account.AccountFragment
+import com.capstone_project.barkos.view.add.AddFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main) // Use the correct layout XML
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        setContentView(R.layout.activity_main)
 
         // Initialize Toolbar
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        // Initialize views from layout
+        // Initialize views
         val menuIcon = findViewById<ImageView>(R.id.menu_icon)
         val searchBar = findViewById<EditText>(R.id.search_bar)
         val heartIcon = findViewById<ImageView>(R.id.heart_icon)
@@ -30,60 +34,57 @@ class MainActivity : AppCompatActivity() {
         // Initialize Bottom Navigation
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        // Set up the Bottom Navigation Item Selection Listener
+        // Load HomeFragment by default
+        if (savedInstanceState == null) {
+            loadFragment(HomeFragment())
+        }
+
+        // Handle Bottom Navigation Item Selection
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    Toast.makeText(this, "Home clicked", Toast.LENGTH_SHORT).show()
+                    loadFragment(HomeFragment())
                     true
                 }
-                R.id.nav_dashboard -> {
-                    Toast.makeText(this, "Dashboard clicked", Toast.LENGTH_SHORT).show()
+                R.id.nav_add -> {
+                    loadFragment(AddFragment())
                     true
                 }
-                R.id.nav_notifications -> {
-                    logout()
+                R.id.nav_pengguna -> {
+                    loadFragment(AccountFragment())
                     true
                 }
                 else -> false
             }
         }
 
-        // Add actions for the menu icon
+        // Actions for icons in toolbar
         menuIcon.setOnClickListener {
             Toast.makeText(this, "Menu icon clicked", Toast.LENGTH_SHORT).show()
-            // Add your desired action here
         }
 
-        // Add actions for the heart icon
         heartIcon.setOnClickListener {
             Toast.makeText(this, "Heart icon clicked", Toast.LENGTH_SHORT).show()
-            // Add your desired action here
         }
 
-        // Add actions for the chat icon
         chatIcon.setOnClickListener {
             Toast.makeText(this, "Chat icon clicked", Toast.LENGTH_SHORT).show()
-            // Add your desired action here
         }
 
-        // Action for typing in the search bar
         searchBar.setOnEditorActionListener { v, actionId, event ->
             val query = searchBar.text.toString()
             if (query.isNotEmpty()) {
                 Toast.makeText(this, "Searching: $query", Toast.LENGTH_SHORT).show()
-                // Add your search logic here
             }
             true
         }
     }
 
-    // Function to handle logout
-    private fun logout() {
-        // Create an Intent to start LoginActivity
-        val intent = Intent(this, LoginActivity::class.java) // Ensure you have a LoginActivity
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear the activity stack
-        startActivity(intent)
-        finish() // Optional: finish the current activity
+    // Function to replace the fragment in fragment_container
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

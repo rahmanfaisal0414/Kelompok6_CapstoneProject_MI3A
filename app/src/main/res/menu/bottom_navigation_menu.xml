@@ -2,16 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_camera"
-        android:title="Home" />
+        android:icon="@drawable/ic_home"
+        android:height="24dp"
+        android:width="24dp"
+        android:title="Home"
+        android:iconTint="@color/black" />
 
     <item
-        android:id="@+id/nav_dashboard"
-        android:icon="@drawable/ic_location"
-        android:title="Dashboard" />
+        android:id="@+id/nav_add"
+        android:icon="@drawable/ic_add"
+        android:height="24dp"
+        android:width="24dp"
+        android:title="Jual" />
 
     <item
-        android:id="@+id/nav_notifications"
+        android:id="@+id/nav_pengguna"
+        android:width="24dp"
+        android:height="24dp"
         android:icon="@drawable/ic_person"
-        android:title="Logout" />
+        android:title="Akun"
+        android:iconTint="@color/black" />
 </menu>

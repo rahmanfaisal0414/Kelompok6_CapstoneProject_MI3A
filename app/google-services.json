@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774914480582",
+    "project_id": "barkos-1cdc9",
+    "storage_bucket": "barkos-1cdc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774914480582:android:b595349be81136982bbac7",
+        "android_client_info": {
+          "package_name": "com.capstone_project.barkos"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDB53Moqpf4VJr8uUSrOVGZHgWbaFF3TLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

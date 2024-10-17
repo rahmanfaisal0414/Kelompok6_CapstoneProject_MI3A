@@ -1,4 +1,4 @@
-package com.capstone_project.barkos.splash
+package com.capstone_project.barkos.view.splash
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,8 +6,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.capstone_project.barkos.R
-import com.capstone_project.barkos.login.LoginActivity
-import com.capstone_project.barkos.main.MainActivity
+import com.capstone_project.barkos.view.login.LoginActivity
+import com.capstone_project.barkos.view.main.MainActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
